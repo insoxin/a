@@ -1,4 +1,4 @@
-const www = new Proxy(new URL('https://www'), {
+const www = new Proxy(new URL('https://www.baidu.com'), {
     get: function get(target, prop) {
         let o = Reflect.get(target, prop);
         if (typeof o === 'function') {
