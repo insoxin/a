@@ -1,134 +1,89 @@
 <template>
-
-  <div id="app">
-    <!--头部导航-->
-    <div class="container-top">
-      <!--弹出层控制按钮-左边框弹出-->
-      <div class="drawer"
-           @click="showSidebar(true)"></div>
-      <top-nav></top-nav>
+    <div id="app">
+        <welcome></welcome>
+        <div class="outter" :class="{'hideLeft':$route.path.split('/').length>2}">
+            <!--通用头部-->
+            <header class="app-header" :class="{'header-hide':!$store.state.headerStatus}">
+                <wx-header :pageName="pageName"></wx-header>
+            </header>
+            <!--搜索框 只在“微信”和“通讯录”页面下显示-->
+            <search v-show="$route.path.indexOf('explore')===-1&&$route.path.indexOf('self')===-1"></search>
+            <!--四个门面页 “微信” “通讯录” “发现” “我”-->
+            <section class="app-content">
+                <keep-alive>
+                    <router-view name="default" ></router-view>
+                </keep-alive>
+            </section>
+            <!--底部导航 路由 -->
+            <footer class="app-footer">
+                <wx-nav></wx-nav>
+            </footer>
+        </div>
+        <!--其他店内页集合 有过渡效果-->
+        <transition name="custom-classes-transition" :enter-active-class="enterAnimate" :leave-active-class="leaveAnimate">
+            <router-view name="subPage" class="sub-page"></router-view>
+        </transition>
     </div>
-    <!--内容-->
-    <div class="container-content">
-      <div class="patch"></div>
-      <router-view></router-view>
-      <div class="patch"></div>
-    </div>
-    <!--尾部tab-->
-    <div class="container-bottom">
-      <bottom-tab class="tab"></bottom-tab>
-    </div>
-  
-    <!--主页左侧弹出层-->
-    <!--此处加z-index，防止弹出时被遮罩层遮挡-->
-    <my-sidebar style="z-index: 20141224;"></my-sidebar>
-    <!--对话界面-->
-    <my-dialog class="my-dialog"
-               v-if="dialog"></my-dialog>
-    <!--个人主页-->
-    <my-personindex class="my-personindex"
-                    v-if="personindex"></my-personindex>
-    <!--搜索-->
-    <my-search v-if="search"></my-search>
-  
-  </div>
 </template>
 
 <script>
-import { mapState } from 'vuex'
-// 加载需要用到的组件
-import bottomTab from './components/bottomtab/bottom-tab'
-import topNav from './components/topnav/top-nav'
-import myDialog from './components/dialog/dialog'
-import mySidebar from './components/sidebar/sidebar'
-import myPersonindex from './components/personindex/personindex'
-import mySearch from './components/search/search'
-
-export default {
-  name: 'app',
-  components: {
-    bottomTab,
-    topNav,
-    myDialog,
-    mySidebar,
-    myPersonindex,
-    mySearch
-  },
-  // mapState是vuex的方法之一
-  computed: mapState(['dialog', 'personindex', 'search']),
-  methods: {
-    // 点击左侧打开侧边栏
-    showSidebar(flag) {
-      this.$store.commit('showSidebar', { flag })
+    import welcome from './components/common/welcome.vue'
+    import WxHeader from './components/common/wx-header'
+    import WxNav from './components/common/wx-nav'
+    import search from './components/common/search'
+    import mixin from "./vuex/mixin.js" // 混合被单独放在 mixin.js 中管理
+    window.mixin = mixin // 将 混合/mixin 暴露在窗口对象中，某些组件需要时，直接提取 window.mixin 
+    export default {
+        name: 'app',
+        components: {
+            WxHeader,
+            WxNav,
+            search,
+            welcome
+        },
+        data() {
+            return {
+                "pageName": "",
+                "routerAnimate": false,
+                "enterAnimate": "", //页面进入动效
+                "leaveAnimate": "" //页面离开动效
+            }
+        },
+        watch: {
+            // 监听 $route 为店内页设置不同的过渡效果
+            "$route" (to, from) {
+                const toDepth = to.path.split('/').length
+                const fromDepth = from.path.split('/').length
+                if (toDepth === 2) {
+                    this.$store.commit("setPageName", to.name)
+                }
+                //同一级页面无需设置过渡效果
+                if (toDepth === fromDepth) {
+                    return;
+                }
+                this.enterAnimate = toDepth > fromDepth ? "animated fadeInRight" : "animated fadeInLeft"
+                this.leaveAnimate = toDepth > fromDepth ? "animated fadeOutLeft" : "animated fadeOutRight"
+                    // 从店面页进入店内页 需要对店内页重新设置离开动效 因为他们处于不同 name 的 router-view
+                if (toDepth === 3) {
+                    this.leaveAnimate = "animated fadeOutRight"
+                }
+            }
+        }
     }
-  }
-}
 </script>
-
-<style lang="stylus">
-@import './common/stylus/mixin.styl'
-
-#app
-  .color-b
-    color:color-b
-  position:relative
-  min-height: 100vh
-  width: 100%
-  background:color-g
-  .my-dialog
-    position: absolute
-  .my-personindex
-    .mu-icon.material-icons
-      color: color-b
-  .container-top
-    position: fixed
-    z-index: 101
-    top: 0
-    left: 0
-    width: 100%
-    height: 10%
-    .drawer
-      position: fixed
-      z-index: 1
-      top: 0
-      left: 0
-      width: 6vw
-      height: 100%
-  .container-bottom
-    position: fixed
-    z-index:1
-    bottom: 0
-    left: 0
-    width: 100%
-    height: 10%
-  .container-content
-    width:100%
-    .patch
-      position: relative
-      top: 0
-      left: 0
-      width: 100%
-      height: 10.2vh
-    .t-1
-      color: color-b
-    .mu-tab-text.has-icon
-      margin-top: -4px
-    .i-1
-      font-size: 2.5em
-      color: #64dd17
-    .i-2
-      font-size: 2.5em
-      color: #f44336
-    .i-3
-      font-size: 2.5em
-      color: #00bfa5
-    .ii-1
-      font-size: 2.5em
-      color: #ffd600
-    .ii-2
-      font-size: 2.5em
-      color: #ec407a
-    .ii-3
-      font-size: 2.5em
-      color: #2962ff
+<style lang="less">
+    /*将公用的样式统一在此导入*/
+    
+    @import "assets/css/base.css";
+    @import "assets/css/common.css";
+    @import "assets/less/wx-header.less";
+    /*阿里 fonticon*/
+    
+    @import "assets/css/lib/iconfont.css";
+    /*过渡效果需要的动画库*/
+    
+    @import "assets/css/lib/animate.css";
+    /*weui 样式库 非常适合高仿微信*/
+    
+    @import "assets/css/lib/weui.min.css";
 </style>

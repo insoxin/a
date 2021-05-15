@@ -1,83 +1,100 @@
-# vue-miniQQ————基于Vue2实现的仿手机QQ单页面应用
+# 一款基于Vue2.0高仿微信App的单页应用
 
-## 项目状态
+## 概述
 
-已停止更新，仅供参考。初学者直接从 Vue3 开始学习即可。
+本项目是使用Vue.js2.0框架，搭配样式库[WeUI](https://weui.io/)，模仿微信app的交互，做到以假乱真的效果。
+
+项目地址 `https://github.com/zhaohaodang/vue-WeChat`
+
+## 手机预览
+
+首选红色，加载较快
+
+![https://sinacloud.net/vue-wechat/images/demo-qrcode-gitee.png](https://sinacloud.net/vue-wechat/images/demo-qrcode-gitee.png)
+
+蓝色为备用地址，加载较慢
+
+![https://sinacloud.net/vue-wechat/images/demo-qrcode-github.png](https://sinacloud.net/vue-wechat/images/demo-qrcode-github.png)
+
+测试机为iPhone 6s，在微信内置浏览器以及Safari、Chrome浏览器中运行良好。
+
+如果你觉得不错想给作者**点个赞**，可以给项目增加一个 Star ★，项目会被收录在 Your stars 中，方便日后查看。
+
+如果你想时时**关注**项目动态，可 Watch ⊙ 此项目，github平台会及时通知你项目的动态。
+
+## 本地预览
+
+1.克隆代码到本地
+
+``` 
+git clone https://github.com/zhaohaodang/vue-WeChat.git
+```
+
+2.进入项目路径
+
+``` 
+cd vue-WeChat
+```
+
+3.安装依赖（安装较慢的话建议使用淘宝镜像）
+
+``` 
+npm install
+```
+
+4.启动项目
+
+``` 
+npm run serve
+```
+
+## 桌面预览
+
+加载较快  [https://zhaohd.gitee.io/vue2-wechat](https://zhaohd.gitee.io/vue2-wechat)
+
+备选 加载较慢 [https://vue2-wechat.github.io](https://vue2-wechat.github.io)
+
+桌面端浏览时，建议打开***开发者工具*** `F12` ，模拟手机预览 `Ctrl+Shift+M` (Chrome)
 
 ## 动图预览
 
-gif图好像被压缩的太多了，感兴趣的可以clone后查看。
+**微信列表的滑动交互**
 
-**侧边栏与个人主页**
+![微信列表的滑动交互](./src/assets/images/gif/msg-operate.gif)
 
-![侧边栏与个人主页](./static/images/gif/sidebar.gif)
+**搜素组件的动画效果**
 
-**滑动组件的动画效果**
-
-![滑动删除](./static/images/gif/swipe.gif)
+![搜素组件的动画效果](./src/assets/images/gif/search-active.gif)
 
 **进入对话框**
 
-![与聊天机器人进行对话](./static/images/gif/dialog.gif)
+![进入对话框](./src/assets/images/gif/enter-dialogue.gif)
 
 **对话框信息**
 
-![搜索功能](./static/images/gif/search.gif)
+![对话框信息](./src/assets/images/gif/dialogue-operate.gif)
 
 **首页Tab切换**
 
-![首页Tab切换](./static/images/gif/ui.gif)
+![首页Tab切换](./src/assets/images/gif/tab-switch.gif)
 
+## 技术相关
 
-***
+* [vue-WeChat Wiki](https://github.com/zhaohaodang/vue-WeChat/wiki) 中记录了开发此项目需要的知识储备、开发思路、开发利器等。
+* 每个主要的.vue和.js文件都有详细的**注释**提示，建议将仓库 `clone` 到本地，查看源码。 
 
+示例1( store.js 注解)
 
-## 技术栈
-*  vue-cli
-*  vue2
-*  vue-router
-*  vuex
-*  axios
-*  stylus
-*  webpack2
-*  muse-ui
+![store.js文件注解](https://sinacloud.net/vue-wechat/images/screenshot/code-screenshot01.jpg)
 
-### 目录
+示例2( App.vue 注解)
 
-<pre>
-.
-├── README.md           
-├── build                 // 构建服务和webpack配置,转发聊天机器人以及ajax获取用户数据相关内容
-├── config                // 项目不同环境的配置
-├── dist                  // 项目build目录
-├── index.html            // 项目入口文件
-├── package.json          // 项目配置文件
-├── mockdata.json         // 项目模拟数据
-├── src
-│   ├── common            // 公用的css样式
-│   ├── components        // 各种组件
-│   ├── router            // 存放路由的文件夹
-│   ├── vuex	            // 存放Vuex的相关
-│   ├── muse-ui.config.js // muse-ui单组件加载配置
-│   ├── App.Vue           // 模板文件入口
-│   └── main.js           // Webpack 预编译入口
-├── static                // css js 和图片资源
-│   
+![App.vue 注解](https://sinacloud.net/vue-wechat/images/screenshot/code-screenshot02.jpg)
 
-</pre>
+## 问题反馈
 
-## 构建
+移步[Issues](https://github.com/zhaohaodang/vue-WeChat/issues)，欢迎提出问题和建议。
 
-``` bash
-# 安装
-npm install
-# 运行（端口8888）
-npm run dev
-# 发布
-npm run build
-```
+## 其他
 
-## 调试
-
-* 桌面： `npm run dev` 后，打开***开发者工具*** `F12`，模拟手机预览 `Ctrl+Shift+M` (Chrome)
-* 移动端： `npm run dev` 后，在cmd命令行中输入ipconfig（win）获取到局域网内ip地址后，生成二维码，然后进行测试（建议微信扫二维码）
+* [vue-see](https://github.com/zhaohaodang/vue-see) 适用于 Vue.2x 的图片预览插件

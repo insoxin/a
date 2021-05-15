@@ -1,42 +1,27 @@
-// The Vue build version to load with the `import` command
-// (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
 import axios from 'axios'
+import VueAxios from 'vue-axios'
+import vuex from 'vue'
 import App from './App'
-import router from './router/index'
+import router from './router'
 import store from './vuex/store'
-import MuseUi from './muse-ui.config'
-// import './common/stylus/base.styl'
-Vue.use(MuseUi)
+import FastClick from 'fastclick' //使用 fastclick 解决移动端 300ms 点击延迟
+import filters from './filters' //将全部过滤器放在 filters/index.js 中便于管理
+//技巧 同时 use 多个插件 被依赖的插件应放在偏后方
+Vue.use(VueAxios, axios, vuex)
+// 注册全局过滤器
+filters(Vue)
 
-// 懒加载模块,由于暂时没有几张图，主要为后续使用做准备，使用方法见https://github.com/hilongjw/vue-lazyload
-import VueLazyload from 'vue-lazyload'
-Vue.use(VueLazyload, {
-  preLoad: 1.3,
-  error: 'static/images/lazy.jpg',
-  loading: 'static/images/lazy.jpg',
-  attempt: 1,
-  listenEvents: ['scroll']
-})
+Vue.config.productionTip = false //将此值设置为 false ,会关闭 Vue 启动时的提示信息，推荐
 
-// 在vue原型中添加$http方法等于axios
-Vue.prototype.$http = axios
-// 设置默认打开的页面
-router.replace('message')
+FastClick.attach(document.body)
 
-Vue.config.productionTip = false
-
-/* eslint-disable no-new */
 new Vue({
-  el: '#app',
-  template: '<App/>',
-  // 注入路由
-  router,
-  // 注入vuex的store
-  store,
-  components: { App },
-  // 组件创建前，进行异步数据数据请求
-  beforeCreate() {
-    this.$store.dispatch('getAllData', this)
-  }
+    el: '#app',
+    router,
+    store,
+    render: h => h(App)
 })
+// 运行 vue init webpack命令新建项目时 可以选择关闭 ESLint
+// 若新建项目时开启了 ESLint .eslintignore 文件，告诉 ESLint 去忽略特定的文件和目录。
+// .eslintignore 文件是一个纯文本文件，其中的每一行都是一个 glob 模式表明哪些路径应该忽略检测
