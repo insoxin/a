@@ -1,14 +1,7 @@
 .DS_Store
+Thumbs.db
+db.json
+*.log
 node_modules/
-/dist/
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-
-# Editor directories and files
-.idea
-.vscode
-*.suo
-*.ntvs*
-*.njsproj
-*.sln
+static/css/style.css
+static/css/*.map

@@ -1,64 +1,46 @@
 {
-  "name": "vuepic",
+  "name": "bing",
   "version": "1.0.0",
-  "description": "安卓壁纸",
-  "author": "zine-fj <747810974@qq.com>",
   "private": true,
   "scripts": {
-    "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
-    "start": "npm run dev",
-    "build": "node build/build.js"
+    "start": "supervisor node ./bin/www"
   },
+  "author": {
+    "name": "xCss",
+    "mail": "xioveliu@gmail.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xCss/bing.git"
+  },
+  "keywords": [
+    "Bing",
+    "BingPicture API",
+    "必应图片",
+    "必应壁纸接口"
+  ],
+  "bugs": {
+    "url": "https://github.com/xCss/bing/issues"
+  },
+  "readme": "./readme.md",
+  "homepage": "https://github.com/xCss/bing#readme",
   "dependencies": {
-    "element-ui": "^2.13.2",
-    "vue": "^2.6.12"
-  },
-  "devDependencies": {
-    "autoprefixer": "^7.2.6",
-    "axios": "^0.18.1",
-    "babel-core": "^6.26.3",
-    "babel-helper-vue-jsx-merge-props": "^2.0.3",
-    "babel-loader": "^7.1.5",
-    "babel-plugin-syntax-jsx": "^6.18.0",
-    "babel-plugin-transform-runtime": "^6.23.0",
-    "babel-plugin-transform-vue-jsx": "^3.7.0",
-    "babel-preset-env": "^1.7.0",
-    "babel-preset-stage-2": "^6.24.1",
-    "chalk": "^2.4.2",
-    "copy-webpack-plugin": "^4.6.0",
-    "css-loader": "^0.28.11",
-    "extract-text-webpack-plugin": "^3.0.2",
-    "file-loader": "^1.1.11",
-    "friendly-errors-webpack-plugin": "^1.7.0",
-    "html-webpack-plugin": "^2.30.1",
-    "node-notifier": "^5.4.3",
-    "optimize-css-assets-webpack-plugin": "^3.2.1",
-    "ora": "^1.4.0",
-    "portfinder": "^1.0.28",
-    "postcss-import": "^11.1.0",
-    "postcss-loader": "^2.1.6",
-    "postcss-url": "^7.3.2",
-    "rimraf": "^2.7.1",
-    "semver": "^5.7.1",
-    "shelljs": "^0.7.8",
-    "uglifyjs-webpack-plugin": "^1.3.0",
-    "url-loader": "^0.5.9",
-    "vue-loader": "^13.7.3",
-    "vue-router": "^3.4.3",
-    "vue-style-loader": "^3.1.2",
-    "vue-template-compiler": "^2.6.12",
-    "webpack": "^3.12.0",
-    "webpack-bundle-analyzer": "^2.13.1",
-    "webpack-dev-server": "^2.11.5",
-    "webpack-merge": "^4.2.2"
-  },
-  "engines": {
-    "node": ">= 6.0.0",
-    "npm": ">= 3.0.0"
-  },
-  "browserslist": [
-    "> 1%",
-    "last 2 versions",
-    "not ie <= 8"
-  ]
+    "body-parser": "~1.15.1",
+    "cookie-parser": "~1.4.3",
+    "debug": "~2.2.0",
+    "express": "~4.13.4",
+    "express-flash": "0.0.2",
+    "express-session": "^1.14.1",
+    "helmet": "^2.3.0",
+    "moment": "^2.18.1",
+    "morgan": "~1.7.0",
+    "mysql": "^2.11.1",
+    "node-schedule": "^1.2.0",
+    "nodemailer": "^0.7.1",
+    "object-assign": "^4.1.0",
+    "pug": "^2.0.0-beta6",
+    "qiniu": "^7.1.0",
+    "serve-favicon": "~2.3.0",
+    "superagent": "^2.3.0"
+  }
 }
