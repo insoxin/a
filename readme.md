@@ -1,60 +1,83 @@
+# vue-miniQQ————基于Vue2实现的仿手机QQ单页面应用
 
-# Bing Pictures Interface | 必应壁纸接口
-> :hammer: `Bing 壁纸 Api`重装上阵啦 :smile: http://bing.ioliu.cn
+## 项目状态
 
-## 目前开放的壁纸接口：
- - `/v1{d,w,h,p,size,callback}` 返回今日的壁纸完整数据(`可选参数{d,w,h,p,size,callback}`)： 
+已停止更新，仅供参考。初学者直接从 Vue3 开始学习即可。
 
-    > 若指定参数`{w,h}` ，则直接返回图片
+## 动图预览
 
-|参数名|类型|是否必要|备注|
-|:----:|:---------:|:--------:|---|
-|d|`Int`|否|自今日起第`d`天前的数据|
-|w|`Int`|否|图片宽度|
-|h|`Int`|否|图片高度|
-|p|`Int`|否|`Page 页码`:第x页|
-|size|`Int`|否|`Size 条数`:每页条数|
-|callback|`String`|否|JSONP的回调函数名|
+gif图好像被压缩的太多了，感兴趣的可以clone后查看。
 
- - `/v1/rand{w,h,type,callback}` 返回随机的壁纸(`可选参数{w,h,type,callback}`)：
+**侧边栏与个人主页**
 
-|参数名|类型|是否必要|备注|
-|:----:|:---------:|:--------:|---|
-|w|`Int`|否|图片宽度|
-|h|`Int`|否|图片高度|
-|type|`String`|否|返回值类型(`json`)|
-|callback|`String`|否|JSONP的回调函数名|
+![侧边栏与个人主页](./static/images/gif/sidebar.gif)
 
-- `/v1/blur{d,w,h,r}` 返回高斯模糊壁纸(`可选参数{d,w,h,r}`)：
+**滑动组件的动画效果**
 
-|参数名|类型|是否必要|备注|
-|:----:|:---------:|:--------:|---|
-|d|`Int`|否|自今日起第`d`天前的数据|
-|w|`Int`|否|图片宽度|
-|h|`Int`|否|图片高度|
-|r|`Int`|否|模糊半径(`1~50`)|
+![滑动删除](./static/images/gif/swipe.gif)
 
-### **:warning:** `高斯模糊`接口目前只支持指定分辨率(`w,h`)的图片，具体分辨率如下：
-```js
-/**
- * 已知分辨率
- */
-resolutions: [
-    '1920x1200',
-    '1920x1080',
-    '1366x768',
-    '1280x768',
-    '1024x768',
-    '800x600',
-    '800x480',
-    '768x1280',
-    '720x1280',
-    '640x480',
-    '480x800',
-    '400x240',
-    '320x240',
-    '240x320'
-]
+**进入对话框**
+
+![与聊天机器人进行对话](./static/images/gif/dialog.gif)
+
+**对话框信息**
+
+![搜索功能](./static/images/gif/search.gif)
+
+**首页Tab切换**
+
+![首页Tab切换](./static/images/gif/ui.gif)
+
+
+***
+
+
+## 技术栈
+*  vue-cli
+*  vue2
+*  vue-router
+*  vuex
+*  axios
+*  stylus
+*  webpack2
+*  muse-ui
+
+### 目录
+
+<pre>
+.
+├── README.md           
+├── build                 // 构建服务和webpack配置,转发聊天机器人以及ajax获取用户数据相关内容
+├── config                // 项目不同环境的配置
+├── dist                  // 项目build目录
+├── index.html            // 项目入口文件
+├── package.json          // 项目配置文件
+├── mockdata.json         // 项目模拟数据
+├── src
+│   ├── common            // 公用的css样式
+│   ├── components        // 各种组件
+│   ├── router            // 存放路由的文件夹
+│   ├── vuex	            // 存放Vuex的相关
+│   ├── muse-ui.config.js // muse-ui单组件加载配置
+│   ├── App.Vue           // 模板文件入口
+│   └── main.js           // Webpack 预编译入口
+├── static                // css js 和图片资源
+│   
+
+</pre>
+
+## 构建
+
+``` bash
+# 安装
+npm install
+# 运行（端口8888）
+npm run dev
+# 发布
+npm run build
 ```
 
-欢迎点评→[issue](https://github.com/xCss/bing/issues)
+## 调试
+
+* 桌面： `npm run dev` 后，打开***开发者工具*** `F12`，模拟手机预览 `Ctrl+Shift+M` (Chrome)
+* 移动端： `npm run dev` 后，在cmd命令行中输入ipconfig（win）获取到局域网内ip地址后，生成二维码，然后进行测试（建议微信扫二维码）

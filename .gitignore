@@ -1,7 +1,5 @@
 .DS_Store
-Thumbs.db
-db.json
-*.log
 node_modules/
-static/css/style.css
-static/css/*.map
+dist/
+npm-debug.log
+yarn-error.log
