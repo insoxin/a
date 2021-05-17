@@ -32,7 +32,7 @@ function init0() {
 
 
 function init() {
-    $.post("http://aibizhi.isoyu.com/v1/" + hv + "/category/" + a + "/" + hv + "?limit=" + b + "&skip=" + c + "&adult=true&first=0&order=" + d, function (data) {
+    $.post("https://aibizhi.isoyu.com/v1/" + hv + "/category/" + a + "/" + hv + "?limit=" + b + "&skip=" + c + "&adult=true&first=0&order=" + d, function (data) {
         var imgs = document.getElementsByClassName("img");
         var col_width = document.getElementById("width");
         var width = col_width.offsetWidth;
