@@ -44,7 +44,7 @@ function init() {
             var img = imgs[i];
             img.width = image_width;
             img.height = image_height;
-            img.src = "" + data.res.vertical[i].thumb;
+            img.src = "https://api.isoyu.com/img-Proxy.php?url=" + data.res.vertical[i].thumb;
             $(img).click({m: imgsUrl, i: i}, function (event) {
                 window.open("" + event.data.m[event.data.i], "true - URL");
             });
