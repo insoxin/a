@@ -19,5 +19,5 @@ var chromeVersionNo = getChromeVersion();
 if(chromeVersionNo < 79){
 include('https://cdn.jsdelivr.net/gh/insoxin/bz@main/bz_js/inso_httpimages.js');
 }else{
-include('https://cdn.jsdelivr.net/gh/insoxin/bz@main/bz_js/inso_images.js');
+include('https://cdn.jsdelivr.net/gh/insoxin/bz@main/bz_js/inso_httpsimages.js');
 }
