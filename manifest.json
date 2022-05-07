@@ -8,7 +8,7 @@
   "icons": [
     {
       "src": "logo.png",
-      "sizes": "256x256",
+      "sizes": "48x48",
       "type": "image/png"
     }
   ]
