@@ -25,6 +25,8 @@
 		<meta name="twitter:widgets:csp" content="on"/>
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes"/>
 		<meta name="msapplication-TileImage" content="//isoyu.com/images/favicon-144.png"/>
+		<link rel="icon" href="/logo.png" type="image/png" />
+		<link rel="manifest" href="manifest.json" />
 		<meta name="msapplication-TileColor" content="#FFFFFF"/>
 		<meta name="msvalidate.01" content=""/>
 		<meta name="google-site-verification" content=""/>
@@ -183,6 +185,22 @@ var _hmt = _hmt || [];
   s.parentNode.insertBefore(hm, s);
 })();
 </script>
+ <script type="text/javascript">
+    if (navigator.serviceWorker != null) {
+      navigator.serviceWorker.register('sw.js')
+      .then(function(registration) {
+        console.log('Registered events at scope: ', registration.scope);
+      });
+    }
+
+    fetch('./data.json')
+
+    var statusEl = document.querySelector('#navbar navbar-inverse')
+    if (!navigator.onLine) {
+      statusEl.classList = ['is-offline']
+      statusEl.innerText = 'Offline'
+    }
+  </script>
 <script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.4/lib/darkmode-js.min.js"></script>
 <script type="text/javascript" charset="UTF-8" src="https://cdn.jsdelivr.net/gh/insoxin/API@master/js/v1.js" exte-id="548" data-size="36x140" data-color="#FF7119" data-show="1"></script>
 <div class="footer">
