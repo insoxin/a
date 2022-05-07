@@ -7,7 +7,7 @@
   "start_url": "/",
   "description": "Aweme PWA",
   "background_color": "#ffffff",
-  "theme_color": "#ffffff"
+  "theme_color": "#ffffff",
   "icons": [
     {
       "src": "logo.png",
