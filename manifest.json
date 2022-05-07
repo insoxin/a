@@ -1,14 +1,17 @@
 {
-  "name": "Minimal PWA",
-  "short_name": "PWA Demo",
-  "display": "standalone",
+
+  "name": "INSO壁纸",
+  "short_name": "INSO壁纸",
+  "orientation": "portrait",
+  "display": "minimal-ui",
   "start_url": "/",
-  "theme_color": "#313131",
-  "background_color": "#313131",
+  "description": "Aweme PWA",
+  "background_color": "#ffffff",
+  "theme_color": "#ffffff"
   "icons": [
     {
-      "src": "e.png",
-      "sizes": "256x256",
+      "src": "logo.png",
+      "sizes": "640x640",
       "type": "image/png"
     }
   ]
