@@ -1,5 +1,8 @@
 # a
-a.pages.dev
+
+https://aibizhi.ml/
+
+https://a.pages.dev
 
 实时同步源码
 
