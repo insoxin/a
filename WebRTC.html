@@ -1,0 +1,123 @@
+<html>
+
+<head>
+
+  <title>Get User IP</title>
+
+</head>
+
+<body>
+
+  <p>Your IP address is <span id="user-ip"></span></p>
+
+  <script type="text/javascript">
+
+    let data = {};
+
+ 
+
+    if (window.RTCPeerConnection) {
+
+      let rtc = new window.RTCPeerConnection({
+
+        iceServers: []
+
+      });
+
+      if (1 || window.mozRTCPeerConnection) {
+
+        rtc.createDataChannel('', {
+
+          reliable: false
+
+        });
+
+      };
+
+ 
+
+      rtc.onicecandidate = function(evt) {
+
+        if (evt.candidate) grepSDP("a=" + evt.candidate.candidate);
+
+      };
+
+      rtc.createOffer(function(offerDesc) {
+
+        grepSDP(offerDesc.sdp);
+
+        rtc.setLocalDescription(offerDesc);
+
+      }, function(e) {
+
+        console.warn("offer failed", e);
+
+      });
+
+ 
+
+      let addrs = Object.create(null);
+
+      addrs["0.0.0.0"] = false;
+
+ 
+
+      function updateDisplay(newAddr) {
+
+        if (newAddr in addrs) return;
+
+        else addrs[newAddr] = true;
+
+        let displayAddrs = Object.keys(addrs).filter(function(k) {
+
+          return addrs[k];
+
+        });
+
+        let ip = displayAddrs.join(" or perhaps ") || "n/a";
+
+        let userIP = document.getElementById('user-ip');
+
+        userIP.innerText = ip;
+
+      }
+
+ 
+
+      function grepSDP(sdp) {
+
+        let hosts = [];
+
+        sdp.split('\r\n').forEach(function(line) {
+
+          if (~line.indexOf("a=candidate")) {
+
+            let parts = line.split(' '),
+
+              addr = parts[4],
+
+              type = parts[7];
+
+            if (type === 'host') updateDisplay(addr);
+
+          } else if (~line.indexOf("c=")) {
+
+            let parts = line.split(' '),
+
+              addr = parts[2];
+
+            updateDisplay(addr);
+
+          }
+
+        });
+
+      }
+
+    }
+
+  </script>
+
+</body>
+
+</html>
